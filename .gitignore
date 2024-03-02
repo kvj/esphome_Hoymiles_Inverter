@@ -1,0 +1,5 @@
+/.esphome/
+/secrets.yaml
+lib/OpenDTU
+project.yaml
+__pycache__

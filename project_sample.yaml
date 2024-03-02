@@ -1,0 +1,54 @@
+external_components:
+  - source: components
+
+esphome:
+  name: hoymiles-inverter
+  friendly_name: Hoymiles Inverter
+  name_add_mac_suffix: true
+
+esp32:
+  board: esp32dev
+
+ota:
+api:
+
+logger:
+  level: DEBUG
+
+wifi:
+  ssid: Change Me
+  password: Change Me
+
+hoymiles_inverter:
+  pins: # Set your own pins
+    sdio: GPIO19
+    clk: GPIO18
+    cs: GPIO21
+    fcs: GPIO22
+    gpio2: GPIO27
+    gpio3: GPIO32
+  inverters:
+    - serial: "11223344556677" # Serial No of your inverter
+      limit_percent: # Number Entity 0 - 100%
+        name: Percent Limit
+      limit_absolute: # Number Entity 0 - 2500 W
+        name: Absolute Limit
+      reachable: # Binary Sensor
+        name: Reachable
+      dc_channels:
+        - power: # Power in W
+            name: Channel 0 Power
+          current: # Current in A
+            name: Channel 0 Current
+          voltage: # Voltage in V
+            name: Channel 0 Voltage
+        - power:
+            name: Channel 1 Power
+      ac_channel:
+        power:
+          name: AC Power
+      inverter_channel:
+        power:
+          name: Inverter Power
+        energy: # Today's Energy in Wh
+          name: Inverter Energy
